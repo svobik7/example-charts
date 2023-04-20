@@ -1,11 +1,12 @@
-import { themeConfig } from '@/configs/themeConfig';
-import { ConfigProvider } from 'antd';
-import type { AppProps } from 'next/app';
-import { LayoutRoot } from '@/components/LayoutRoot/LayoutRoot';
-
 import '@/styles/globals.css';
 
-export default function App({ Component, pageProps }: AppProps) {
+import { LayoutRoot } from '@/components/LayoutRoot/LayoutRoot';
+import { themeConfig } from '@/configs/themeConfig';
+import { trpc } from '@/utils/trpcUtils';
+import { ConfigProvider } from 'antd';
+import type { AppProps } from 'next/app';
+
+function App({ Component, pageProps }: AppProps) {
   return (
     <ConfigProvider theme={themeConfig}>
       <LayoutRoot>
@@ -14,3 +15,5 @@ export default function App({ Component, pageProps }: AppProps) {
     </ConfigProvider>
   );
 }
+
+export default trpc.withTRPC(App);

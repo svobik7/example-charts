@@ -15,6 +15,7 @@
     "jsx": "preserve",
     "incremental": true,
     "verbatimModuleSyntax": true,
+    "strictNullChecks": true,
     "paths": {
       "@/*": ["./src/*"]
     }
