@@ -32,7 +32,9 @@ function factoryChart({ data, config = {} }: FactoryProps) {
       .adjust('stack')
       .position('value')
       .color('group', ['#668bee', '#5ad4aa'])
-      .label('value');
+      .label('value', () => ({
+        content: (data) => String(Math.round(data.value)),
+      }));
 
     chart.render();
 
