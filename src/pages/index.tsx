@@ -1,6 +1,6 @@
 import { Button } from '@/components/Button/Button';
 import { CardActions } from '@/components/CardActions.tsx/CardActions';
-import { ChartCases } from '@/components/ChartByYears/ChartByYears';
+import { ChartYears } from '@/components/ChartYears/ChartYears';
 import { ChartTotal } from '@/components/ChartTotal/ChartTotal';
 import { LayoutPage } from '@/components/LayoutPage/LayoutPage';
 import { getFavorites } from '@/libs/node-storage';
@@ -14,7 +14,7 @@ const charts = [
   {
     id: 'chart-years',
     title: 'By years [in millions]',
-    component: <ChartCases height={300} />,
+    component: <ChartYears height={300} />,
   },
   {
     id: 'chart-total',

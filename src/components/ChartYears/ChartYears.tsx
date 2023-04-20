@@ -2,9 +2,9 @@ import { BarChart } from '@/libs/g2-charts/BarChart';
 import { trpc } from '@/utils/trpcUtils';
 import { Skeleton } from 'antd';
 
-type ChartCasesProps = { height: number };
+type ChartYearsProps = { height: number };
 
-export function ChartCases({ height }: ChartCasesProps) {
+export function ChartYears({ height }: ChartYearsProps) {
   const cases = trpc.getCases.useQuery();
 
   if (!cases.data) {

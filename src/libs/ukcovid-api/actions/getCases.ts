@@ -1,31 +1,33 @@
 import { fetchData, type ApiResponse } from '..';
 
-type SexCasesByAge = { age: string; rate: number; value: number };
-type DayCases = {
+type Value = { age: string; rate: number; value: number };
+type DailyValues = {
   date: string;
-  femaleCases: SexCasesByAge[];
-  maleCases: SexCasesByAge[];
+  femaleCases: Value[];
+  maleCases: Value[];
 };
 
-export type CasesSummary = {
+export type Summary = {
   year: string;
   femaleCases: number;
   maleCases: number;
 };
 
-function getSexSummary(data: SexCasesByAge[]) {
+// Sum up the value of all cases and ignores age
+function sumValue(data: Value[]) {
   return data.reduce((acc, item) => acc + item.value, 0);
 }
 
-function getSummary(data: DayCases[]): CasesSummary[] {
+// Group cases by year and sum up the values
+function getSummary(data: DailyValues[]): Summary[] {
   const grouped = data.reduce((acc, item) => {
     const year = new Date(item.date).getFullYear();
     const yearData = acc[year] || { year, femaleCases: 0, maleCases: 0 };
-    yearData.femaleCases += getSexSummary(item.femaleCases);
-    yearData.maleCases += getSexSummary(item.maleCases);
+    yearData.femaleCases += sumValue(item.femaleCases);
+    yearData.maleCases += sumValue(item.maleCases);
     acc[year] = yearData;
     return acc;
-  }, {} as Record<string, CasesSummary>);
+  }, {} as Record<string, Summary>);
 
   return Object.values(grouped);
 }
@@ -45,7 +47,7 @@ export async function getCases() {
   const response = (await fetchData(
     structure,
     filters,
-  )) as ApiResponse<DayCases>;
+  )) as ApiResponse<DailyValues>;
 
   return getSummary(response.data);
 }

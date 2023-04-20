@@ -11,20 +11,25 @@ export type QueryFilter = {
   value: string;
 };
 
-export async function fetchData(
-  structure: QueryStructure,
-  filters?: QueryFilter[],
-) {
-  const endpoint = new URL(API_URL);
+function getUrl(structure: QueryStructure, filters?: QueryFilter[]) {
+  const url = new URL(API_URL);
 
-  endpoint.searchParams.append('structure', JSON.stringify(structure));
+  url.searchParams.append('structure', JSON.stringify(structure));
 
   if (filters) {
-    endpoint.searchParams.append(
+    url.searchParams.append(
       'filters',
       filters.map((f) => `${f.name}=${f.value}`).join(';'),
     );
   }
 
-  return fetch(endpoint).then((res) => res.json());
+  return url;
+}
+
+export async function fetchData(
+  structure: QueryStructure,
+  filters?: QueryFilter[],
+) {
+  const url = getUrl(structure, filters);
+  return fetch(url).then((res) => res.json());
 }

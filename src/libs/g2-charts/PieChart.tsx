@@ -8,6 +8,7 @@ type FactoryProps = { data: Data[]; config?: Config };
 
 function factoryChart({ data, config = {} }: FactoryProps) {
   return async function renderChart(container: HTMLDivElement) {
+    // dynamic import is used as workaround for SSR because G2 is not SSR compatible
     const G2 = await import('@antv/g2');
 
     const chart = new G2.Chart({

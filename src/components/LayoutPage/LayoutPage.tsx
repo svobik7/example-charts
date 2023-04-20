@@ -14,7 +14,9 @@ export function LayoutPage({ title, toolbar, children }: LayoutPageProps) {
     <div className={styles.page}>
       <Row gutter={[32, 16]} justify="space-between">
         <Col xs={{ span: 24 }} md={{ span: 8 }}>
-          <Title level={4}>{title}</Title>
+          <Title level={4} style={{ marginBottom: 0 }}>
+            {title}
+          </Title>
         </Col>
         <Col xs={{ span: 24 }} md={{ span: 16 }} className={styles.toolbar}>
           <Space size="middle" align="end" wrap>

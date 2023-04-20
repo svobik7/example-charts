@@ -10,7 +10,7 @@ export function Chart({ render }: ChartProps) {
 
   useEffect(() => {
     if (!isRendered.current && containerRef.current) {
-      isRendered.current = true;
+      isRendered.current = true; // prevents re-rendering
       render(containerRef.current);
     }
   }, []);

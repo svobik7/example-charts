@@ -1,5 +1,8 @@
 import Storage from 'node-storage';
 
+// simple file based storage is used for simplicity
+// therefore data are not persisted between deployments
+// in a real world app, you would use a database
 function getDB() {
   return new Storage('./storage.json');
 }
