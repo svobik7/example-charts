@@ -8,15 +8,32 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix"
+    ]
+  },
   "dependencies": {
-    "@types/node": "18.15.11",
+    "@ant-design/icons": "^5.0.1",
+    "@antv/g2": "^4.2.10",
+    "@types/node": "18.15.12",
     "@types/react": "18.0.37",
     "@types/react-dom": "18.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.59.0",
+    "@typescript-eslint/parser": "^5.59.0",
+    "antd": "^5.4.3",
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "next": "13.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "lint-staged": "^13.2.1",
+    "prettier": "^2.8.7",
+    "pretty-quick": "^3.1.3"
   }
 }
