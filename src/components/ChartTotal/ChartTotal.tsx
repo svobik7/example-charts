@@ -5,13 +5,13 @@ import { Skeleton } from 'antd';
 type ChartTotalProps = { height: number };
 
 export function ChartTotal({ height }: ChartTotalProps) {
-  const summary = trpc.getCasesBySex.useQuery();
+  const cases = trpc.getCases.useQuery();
 
-  if (!summary.data) {
+  if (!cases.data) {
     return <Skeleton />;
   }
 
-  const totals = summary.data.reduce(
+  const totals = cases.data.reduce(
     (acc, item) => {
       acc.Females += item.femaleCases;
       acc.Males += item.maleCases;

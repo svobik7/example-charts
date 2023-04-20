@@ -1,13 +1,13 @@
-import { Avatar, Button, Col, Row, Space, theme } from 'antd';
+import { Button, Col, Row, Space, theme } from 'antd';
 import {
   MdOutlineFavorite,
   MdOutlineFavoriteBorder,
   MdOutlineInsertComment,
 } from 'react-icons/md';
 
+import Image from 'next/image';
 import { useState, type ReactNode } from 'react';
 import styles from './CardActions.module.css';
-import Image from 'next/image';
 
 const { useToken } = theme;
 
@@ -15,19 +15,23 @@ type ActionProps = {
   count?: number;
   isActiveDefault?: boolean;
   renderContent: (isActive: boolean) => ReactNode;
+  onChange?: (isActive: boolean) => void;
 };
 
 function Action({
   count = 0,
   isActiveDefault = false,
   renderContent,
+  onChange,
 }: ActionProps) {
   const [isActive, setIsActive] = useState(isActiveDefault);
   const { token } = useToken();
   return (
     <Button
       type="ghost"
-      onClick={() => setIsActive((prev) => !prev)}
+      onClick={() => {
+        [onChange, setIsActive].map((fn) => fn?.(!isActive));
+      }}
       style={{
         color: isActive ? token.colorPrimary : token.colorTextTertiary,
       }}
@@ -40,7 +44,15 @@ function Action({
   );
 }
 
-export function CardActions() {
+type CardActionsProps = {
+  isFavoriteActive?: boolean;
+  onFavoriteChange?: (isActive: boolean) => void;
+};
+
+export function CardActions({
+  onFavoriteChange,
+  isFavoriteActive = false,
+}: CardActionsProps) {
   return (
     <div className={styles.container}>
       <Row justify="space-between" gutter={32}>
@@ -60,6 +72,8 @@ export function CardActions() {
         </Col>
         <Col>
           <Action
+            isActiveDefault={isFavoriteActive}
+            onChange={onFavoriteChange}
             renderContent={(isActive) =>
               isActive ? (
                 <MdOutlineFavorite size="1.5rem" />

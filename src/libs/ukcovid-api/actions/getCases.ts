@@ -1,17 +1,23 @@
 import { fetchData, type ApiResponse } from '..';
 
-type SexDataByAge = { age: string; rate: number; value: number };
-type DayDataBySex = {
+type SexCasesByAge = { age: string; rate: number; value: number };
+type DayCases = {
   date: string;
-  femaleCases: SexDataByAge[];
-  maleCases: SexDataByAge[];
+  femaleCases: SexCasesByAge[];
+  maleCases: SexCasesByAge[];
 };
 
-function getSexSummary(data: SexDataByAge[]) {
+export type CasesSummary = {
+  year: string;
+  femaleCases: number;
+  maleCases: number;
+};
+
+function getSexSummary(data: SexCasesByAge[]) {
   return data.reduce((acc, item) => acc + item.value, 0);
 }
 
-function getSummary(data: DayDataBySex[]) {
+function getSummary(data: DayCases[]): CasesSummary[] {
   const grouped = data.reduce((acc, item) => {
     const year = new Date(item.date).getFullYear();
     const yearData = acc[year] || { year, femaleCases: 0, maleCases: 0 };
@@ -19,12 +25,12 @@ function getSummary(data: DayDataBySex[]) {
     yearData.maleCases += getSexSummary(item.maleCases);
     acc[year] = yearData;
     return acc;
-  }, {} as Record<string, { year: string; femaleCases: number; maleCases: number }>);
+  }, {} as Record<string, CasesSummary>);
 
   return Object.values(grouped);
 }
 
-export async function getCasesBySex() {
+export async function getCases() {
   const structure = {
     date: 'date',
     femaleCases: 'femaleCases',
@@ -39,6 +45,7 @@ export async function getCasesBySex() {
   const response = (await fetchData(
     structure,
     filters,
-  )) as ApiResponse<DayDataBySex>;
+  )) as ApiResponse<DayCases>;
+
   return getSummary(response.data);
 }

@@ -5,13 +5,13 @@ import { Skeleton } from 'antd';
 type ChartCasesProps = { height: number };
 
 export function ChartCases({ height }: ChartCasesProps) {
-  const summary = trpc.getCasesBySex.useQuery();
+  const cases = trpc.getCases.useQuery();
 
-  if (!summary.data) {
+  if (!cases.data) {
     return <Skeleton />;
   }
 
-  const chartData = summary.data.flatMap(({ year, femaleCases, maleCases }) => [
+  const chartData = cases.data.flatMap(({ year, femaleCases, maleCases }) => [
     { group: 'Females', x: String(year), y: femaleCases / 1_000_000 },
     { group: 'Males', x: String(year), y: maleCases / 1_000_000 },
   ]);
