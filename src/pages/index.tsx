@@ -14,12 +14,12 @@ const charts = [
   {
     id: 'chart-years',
     title: 'By years [in millions]',
-    component: <ChartYears height={300} />,
+    component: <ChartYears height={310} />,
   },
   {
     id: 'chart-total',
     title: 'Total [in millions]',
-    component: <ChartTotal height={300} />,
+    component: <ChartTotal height={310} />,
   },
 ];
 

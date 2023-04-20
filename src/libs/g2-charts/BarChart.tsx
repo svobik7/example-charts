@@ -49,5 +49,10 @@ type BarChartProps = FactoryProps;
 
 export function BarChart({ data, config }: BarChartProps) {
   const renderChart = factoryChart({ data, config });
-  return <Chart render={(container) => renderChart(container)} />;
+  return (
+    <Chart
+      height={config?.height}
+      render={(container) => renderChart(container)}
+    />
+  );
 }

@@ -8,7 +8,7 @@ export function ChartYears({ height }: ChartYearsProps) {
   const cases = trpc.getCases.useQuery();
 
   if (!cases.data) {
-    return <Skeleton />;
+    return <Skeleton style={{ height }} />;
   }
 
   const chartData = cases.data.flatMap(({ year, femaleCases, maleCases }) => [

@@ -8,7 +8,7 @@ export function ChartTotal({ height }: ChartTotalProps) {
   const cases = trpc.getCases.useQuery();
 
   if (!cases.data) {
-    return <Skeleton />;
+    return <Skeleton style={{ height }} />;
   }
 
   const totals = cases.data.reduce(

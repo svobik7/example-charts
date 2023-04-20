@@ -1,10 +1,11 @@
 import { useEffect, useRef } from 'react';
 
 type ChartProps = {
+  height?: number;
   render: (container: HTMLDivElement) => void;
 };
 
-export function Chart({ render }: ChartProps) {
+export function Chart({ height, render }: ChartProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const isRendered = useRef(false);
 
@@ -15,5 +16,5 @@ export function Chart({ render }: ChartProps) {
     }
   }, []);
 
-  return <div ref={containerRef}></div>;
+  return <div ref={containerRef} style={{ height }}></div>;
 }
