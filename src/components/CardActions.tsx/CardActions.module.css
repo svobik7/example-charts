@@ -1,0 +1,10 @@
+.container {
+  margin: 0 16px;
+}
+
+.avatar {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 24px;
+  height: 24px;
+}
