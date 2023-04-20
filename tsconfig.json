@@ -16,6 +16,7 @@
     "incremental": true,
     "verbatimModuleSyntax": true,
     "strictNullChecks": true,
+    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     }

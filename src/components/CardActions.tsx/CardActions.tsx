@@ -71,7 +71,7 @@ export function CardActions({
             )}
           />
         </Col>
-        <Col>
+        <Col data-cy="btn-favorite-wrapper">
           <Action
             isActiveDefault={isFavoriteActive}
             onChange={onFavoriteChange}
