@@ -60,6 +60,7 @@ export function CardActions({
           <Action
             renderContent={() => (
               <div className={styles.avatar}>
+                {/* NOTE: Antd design avatar does not play well with next js optimized images */}
                 <Image
                   src="/dummy-avatar.jpg"
                   alt="Picture of the author"

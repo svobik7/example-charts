@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react';
 
-type ChartProps<T> = {
+type ChartProps = {
   render: (container: HTMLDivElement) => void;
 };
 
-export function Chart<T>({ render }: ChartProps<T>) {
+export function Chart({ render }: ChartProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const isRendered = useRef(false);
 

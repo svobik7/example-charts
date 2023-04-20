@@ -1,4 +1,3 @@
-// @ts-ignore
 import Storage from 'node-storage';
 
 function getDB() {
