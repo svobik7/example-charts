@@ -62,11 +62,13 @@ The project uses tRPC for handling api requests. You can find the api at [https:
 
 ## Database
 
-For simplicity no external DB provider was integrate. Instead, a simple JSON is used as DB.
+For simplicity no external DB provider was integrated. Instead, a simple JSON is used as DB.
 
 When the server starts in production mode, the JSON is stored in persistent storage (disk drive) to ensure the data stays consistent during multiple requests. The file is located at [./storage.json] and manipulated by tiny [next-storage](https://www.npmjs.com/package/node-storage) library. Please note that because of the nature of Vercel (serverless), the file does not stay consistent during multiple deployment. That means every new deployment will reset the file to its initial state.
 
 When the server starts in development mode the JSON is loaded only into memory and is not persisted anyhow. The main reason behind this is to keep git logs free of storage files changes. Another reason is to ensure Cypress tests to always start with initial state of JSON.
+
+There was no user/session management implemented in this project. Therefore the JSON is not protected anyhow and the data is shared among all visitor. In real world projects I would use Prisma for DB manipulation and would implement user/session management.
 
 ## Git hooks
 
