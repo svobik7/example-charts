@@ -31,7 +31,7 @@ export function ChartTotal({ height }: ChartTotalProps) {
   return (
     <PieChart
       data={chartData}
-      config={{ height, annotation: '# of people in mm' }}
+      config={{ height, annotation: '# of people, in mm' }}
     />
   );
 }
