@@ -8,7 +8,7 @@ It is harder to spin off than other UI libs/tools. I would prefer to use somethi
 
 ### G2 by AntV (NOT RECOMMENDED)
 
-Their documentation mixed English with Chinese language. Integration in Next.js (SSR) has to be done with workaround in place because the library's own dependencies are imported in a wrong way under the hood. Therefore it had to be imported dynamically (`const G2 = await import('@antv/g2');`) which goes against of SSR benefits.
+It's documentation mixes English and Chinese. Integration in Next.js (SSR) has to be done with workaround in place because the library's own dependencies are imported in a wrong way under the hood. Therefore it had to be imported dynamically (`const G2 = await import('@antv/g2');`) which goes against of SSR benefits.
 
 The workaround can be seen in [./components/ChartYears/ChartYears.tsx] and [./components/ChartTotal/ChartTotal.tsx].
 
