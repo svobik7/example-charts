@@ -1,11 +1,11 @@
 import { Button } from '@/components/Button/Button';
 import { CardActions } from '@/components/CardActions.tsx/CardActions';
-import { ChartYears } from '@/components/ChartYears/ChartYears';
 import { ChartTotal } from '@/components/ChartTotal/ChartTotal';
+import { ChartYears } from '@/components/ChartYears/ChartYears';
 import { LayoutPage } from '@/components/LayoutPage/LayoutPage';
 import { getFavorites } from '@/libs/node-storage';
 import { trpc } from '@/utils/trpcUtils';
-import { Card, Col, Row, Typography } from 'antd';
+import { Card, Col, Row } from 'antd';
 import type { InferGetStaticPropsType } from 'next';
 import { HiOutlineDownload, HiOutlineMenuAlt2 } from 'react-icons/hi';
 import { IoFilter } from 'react-icons/io5';
@@ -14,18 +14,14 @@ const charts = [
   {
     id: 'chart-years',
     title: 'Cases by years',
-    units: 'in millions',
     component: <ChartYears height={310} />,
   },
   {
     id: 'chart-total',
     title: 'Cases in total',
-    units: 'in millions',
     component: <ChartTotal height={310} />,
   },
 ];
-
-const { Text } = Typography;
 
 export default function Index({
   favorites,
@@ -59,7 +55,6 @@ export default function Index({
           <Col key={c.id} xs={{ span: 24 }} md={{ span: 12 }}>
             <Card
               title={c.title}
-              extra={<Text type="secondary">[{c.units}]</Text>}
               actions={[
                 <CardActions
                   isFavoriteActive={favorites[c.id] ?? false}
