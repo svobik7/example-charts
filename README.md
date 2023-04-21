@@ -68,7 +68,7 @@ When the server starts in production mode, the JSON is stored in persistent stor
 
 When the server starts in development mode the JSON is loaded only into memory and is not persisted anyhow. The main reason behind this is to keep git logs free of storage files changes. Another reason is to ensure Cypress tests to always start with initial state of JSON.
 
-There was no user/session management implemented in this project. Therefore the JSON is not protected anyhow and the data is shared among all visitor. In real world projects I would use Prisma for DB manipulation and would implement user/session management.
+There was no user/session management implemented in this project. Therefore the JSON is not protected anyhow and the data is shared among all visitors. In real world projects I would use Prisma for DB manipulation and would implement user/session management.
 
 ## Git hooks
 
