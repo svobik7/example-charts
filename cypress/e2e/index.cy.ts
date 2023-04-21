@@ -17,8 +17,12 @@ describe('Index Page', () => {
     cy.visit('/');
     cy.get('h4').should('contain', 'Covid19 statistics');
 
-    cy.get('.ant-card-head-title').should('contain', 'By years [in millions]');
-    cy.get('.ant-card-head-title').should('contain', 'Total [in millions]');
+    cy.get('.ant-card-head-title').should('contain', 'Cases by years');
+    cy.get('.ant-card-head-title').should('contain', 'Cases in total');
+
+    cy.get('.ant-card-extra')
+      .should('contain', '[in millions]')
+      .and('have.length', 2);
   });
 
   describe('Favorites', () => {
