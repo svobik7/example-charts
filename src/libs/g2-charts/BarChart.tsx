@@ -2,7 +2,7 @@ import type { ChartCfg } from '@antv/g2/lib/interface';
 import { Chart } from './Chart';
 
 type Data = { group: string; x: string; y: number };
-type Config = Partial<ChartCfg>;
+type Config = Partial<ChartCfg> & { yLabel?: string };
 
 type FactoryProps = { data: Data[]; config?: Config };
 
@@ -11,17 +11,30 @@ function factoryChart({ data, config = {} }: FactoryProps) {
     // dynamic import is used as workaround for SSR because G2 is not SSR compatible
     const G2 = await import('@antv/g2');
 
+    const { yLabel, ...chartConfig } = config;
+
     const chart = new G2.Chart({
       container: container,
       autoFit: true,
-      ...config,
+      ...chartConfig,
     });
 
     chart.data(data);
 
     chart.scale('y', {
-      nice: true,
+      alias: yLabel,
     });
+
+    if (yLabel) {
+      chart.axis('y', {
+        title: {
+          offset: 60,
+          style: {
+            fill: '#8c8c8c',
+          },
+        },
+      });
+    }
 
     chart.tooltip({
       showMarkers: false,

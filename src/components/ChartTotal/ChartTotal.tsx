@@ -28,5 +28,7 @@ export function ChartTotal({ height }: ChartTotalProps) {
     value: totals[key as keyof typeof totals] / 1_000_000,
   }));
 
-  return <PieChart data={chartData} config={{ height }} />;
+  return (
+    <PieChart data={chartData} config={{ height, annotation: '# of people' }} />
+  );
 }

@@ -16,5 +16,7 @@ export function ChartYears({ height }: ChartYearsProps) {
     { group: 'Males', x: String(year), y: maleCases / 1_000_000 },
   ]);
 
-  return <BarChart data={chartData} config={{ height }} />;
+  return (
+    <BarChart data={chartData} config={{ height, yLabel: '# of people' }} />
+  );
 }

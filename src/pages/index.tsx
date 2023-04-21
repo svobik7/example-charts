@@ -5,7 +5,7 @@ import { ChartTotal } from '@/components/ChartTotal/ChartTotal';
 import { LayoutPage } from '@/components/LayoutPage/LayoutPage';
 import { getFavorites } from '@/libs/node-storage';
 import { trpc } from '@/utils/trpcUtils';
-import { Card, Col, Row } from 'antd';
+import { Card, Col, Row, Typography } from 'antd';
 import type { InferGetStaticPropsType } from 'next';
 import { HiOutlineDownload, HiOutlineMenuAlt2 } from 'react-icons/hi';
 import { IoFilter } from 'react-icons/io5';
@@ -13,15 +13,19 @@ import { IoFilter } from 'react-icons/io5';
 const charts = [
   {
     id: 'chart-years',
-    title: 'By years [in millions]',
+    title: 'Cases by years',
+    units: 'in millions',
     component: <ChartYears height={310} />,
   },
   {
     id: 'chart-total',
-    title: 'Total [in millions]',
+    title: 'Cases in total',
+    units: 'in millions',
     component: <ChartTotal height={310} />,
   },
 ];
+
+const { Text } = Typography;
 
 export default function Index({
   favorites,
@@ -29,7 +33,7 @@ export default function Index({
   const setFavorite = trpc.putFavorite.useMutation();
   return (
     <LayoutPage
-      title="Covid19 statistics"
+      title="Covid19 statistics in UK"
       toolbar={[
         <Button
           key="btn-export"
@@ -55,6 +59,7 @@ export default function Index({
           <Col key={c.id} xs={{ span: 24 }} md={{ span: 12 }}>
             <Card
               title={c.title}
+              extra={<Text type="secondary">[{c.units}]</Text>}
               actions={[
                 <CardActions
                   isFavoriteActive={favorites[c.id] ?? false}
